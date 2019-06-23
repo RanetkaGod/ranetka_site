@@ -1,0 +1,13 @@
+<template>
+    <svg enable-background="new 0 0 100 100" id="Layer_1" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon fill="#010101" points="22.4,64.1 50.8,36.5 79.3,64.1 80.8,63.2 50.8,34.1 20.8,63.2 22.4,64.1 "/></svg>
+</template>
+
+<script>
+    export default {
+        name: "up"
+    }
+</script>
+
+<style scoped>
+
+</style>
