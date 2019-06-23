@@ -65,6 +65,13 @@
     $complementary_color: #62f0c1
     $additional_complementary_color: #d8f062
 
+    =nav_button_size
+        min-width: 40px
+        min-height: 40px
+        width: 5vw !important
+        max-width: 80px
+        max-height: 80px !important
+
     =unhilight
         -webkit-user-select: none
         -moz-user-select: none
@@ -78,6 +85,7 @@
 
     =transform-side-arrow($shift)
         transform: translateX($shift)
+
     @keyframes logo_animation
         0%
             transform: scaleY(0)
@@ -93,6 +101,7 @@
             opacity: 0
         100%
             opacity: 1
+
     @keyframes move_down_animation
         0%
             opacity: 0
@@ -114,9 +123,12 @@
     #down-wrapper
         border-radius: 100%
         transition: all .3s ease
-        &:hover
-            transform: translateY(10px)
+        @media (pointer: fine)
+            &:hover
+                //transform: translateY(10px)
+                bottom: -10px //Чтобы не было лага анимации
     .fp-controlArrow
+        +nav_button_size
         border: none
         display: block
         height: auto
@@ -127,22 +139,21 @@
             padding-bottom: 100%
         &.fp-next
             background: url("../assets/arrow_right.svg") no-repeat
-            &:hover
-                +transform-side-arrow(10px)
+            right: 0
+            @media (pointer: fine)
+                &:hover
+                    +transform-side-arrow(10px)
         &.fp-prev
             background: url("../assets/arrow_left.svg") no-repeat
-            &:hover
-                +transform-side-arrow(-10px)
+            left: 0
+            @media (pointer: fine)
+                &:hover
+                    +transform-side-arrow(-10px)
     .main-page-wrapper
         height: 100vh
         width: 100%
-    .nav-block, .fp-controlArrow
-        min-width: 50px
-        min-height: 50px
-        width: 5vw !important
-        max-width: 80px
-        max-height: 80px !important
     .nav-block
+        +nav_button_size
         position: absolute
         margin-left: auto
         margin-right: auto
