@@ -39,17 +39,19 @@
             transform: translateY(-80px)
         50%
             transform: translateY(-80px)
-            opacity: 0
+            //opacity: 0
         100%
             transform: translateY(0)
             opacity: 1
     @media (pointer: coarse)
         .color-icon:hover
             opacity: 0 !important
+
     =flex-row
         display: flex
         flex-direction: row
         justify-content: flex-end
+
     .top-menu-wrapper
         font-family: 'Roboto', sans-serif
         align-items: center
@@ -71,7 +73,6 @@
             a
                 box-sizing: border-box
                 position: relative
-                //width: 3vw
                 margin: 0 5px 0 5px
                 min-width: 35px
                 min-height: 35px

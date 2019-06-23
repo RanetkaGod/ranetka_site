@@ -7,7 +7,7 @@
                     <div class="image-box logo"><img class="main-logo" src="../assets/Ranetka.png"></div>
                     <div class="image-box japanese"><img class="japanese" src="../assets/hentaibaka.png"></div>
                 </div>
-                <div @click="move_down" class="nav_block">
+                <div @click="move_down" class="nav-block" id="down-wrapper">
                     <Down id="down" class="nav_arrow"></Down>
                 </div>
             </div>
@@ -65,11 +65,6 @@
     $complementary_color: #62f0c1
     $additional_complementary_color: #d8f062
 
-    //$main_color: #F48FB1
-    //$complimentary_color: #8ff4d2
-
-
-
     =unhilight
         -webkit-user-select: none
         -moz-user-select: none
@@ -81,6 +76,8 @@
         justify-content: center
         align-items: center
 
+    =transform-side-arrow($shift)
+        transform: translateX($shift)
     @keyframes logo_animation
         0%
             transform: scaleY(0)
@@ -105,31 +102,52 @@
         100%
             opacity: 1
             transform: translateY(0)
+
     video
-        //object-fit: cover
         min-width: 100%
         min-height: 100%
-    //.fp-next                                          Нужно сделать нормальные стрелки + анимацию на стрелку вниз + стрелка вверх
-        width: 80px
-        height: 80px
+
+    #down
+        height: 100%
+        width: 100%
+        display: block
+    #down-wrapper
+        border-radius: 100%
+        transition: all .3s ease
+        &:hover
+            transform: translateY(10px)
+    .fp-controlArrow
         border: none
-        background-image: url("../assets/arrow_right.svg")
-        background-size: 80px 80px
-    //.fp-previous
+        display: block
+        height: auto
+        transition: all .3s ease
+        &:after
+            content: ""
+            display: block
+            padding-bottom: 100%
+        &.fp-next
+            background: url("../assets/arrow_right.svg") no-repeat
+            &:hover
+                +transform-side-arrow(10px)
+        &.fp-prev
+            background: url("../assets/arrow_left.svg") no-repeat
+            &:hover
+                +transform-side-arrow(-10px)
     .main-page-wrapper
         height: 100vh
         width: 100%
-    .nav_block
+    .nav-block, .fp-controlArrow
+        min-width: 50px
+        min-height: 50px
+        width: 5vw !important
+        max-width: 80px
+        max-height: 80px !important
+    .nav-block
         position: absolute
         margin-left: auto
         margin-right: auto
         left: 0
         right: 0
-        min-width: 50px
-        min-height: 50px
-        width: 5vw
-        max-width: 80px
-        max-height: 80px
         bottom: 0
         animation: 1s ease-out 0s 1 move_down_animation
         .nav_arrow
