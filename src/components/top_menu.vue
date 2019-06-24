@@ -63,8 +63,9 @@
         +flex-row
         #links-wrapper
             box-sizing: border-box
+            display: block
             animation: 1s ease-out 0s 1 slide_top
-            padding: 0 30px 0 30px
+            padding: 0 15px 0 15px
             position: relative
             +flex-row
             .icon
@@ -72,19 +73,28 @@
                 cursor: pointer
             a
                 box-sizing: border-box
-                position: relative
                 margin: 0 5px 0 5px
-                min-width: 35px
-                min-height: 35px
-                max-width: 50px
-                max-height: 50px
+                min-width: 30px
+                min-height: 30px
+                width: 5vw !important
+                max-width: 40px
+                max-height: 40px
+                position: relative
                 display: block
                 outline: none
+                &:before
+                    content: ''
+                    display: block
+                    position: relative
+                    padding-top: 100%
                 .social-icon
+                    display: block
+                    position: absolute
                     width: 100%
                     height: 100%
+                    top: 0
                     &.color-icon
-                        position: absolute
+                        z-index: 1
                         opacity: 0
                         transition: all .4s
                         &:hover
