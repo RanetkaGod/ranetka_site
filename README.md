@@ -1,5 +1,4 @@
-# Vue.js Ranetka's site 
+# Vue.js Ranetka's site (WIP)
 
 ## Ranetka's buisness-card project
-### /IN DEVELOPMENT/
 ![Alt text](https://i.imgur.com/nTLC53I.png)
