@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "loading_page"
+        name: "LoadingPage"
     }
 </script>
 

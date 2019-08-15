@@ -18,7 +18,7 @@
 
 
     export default {
-        name: "top_menu",
+        name: "TopMenu",
         data() {
             return {
 

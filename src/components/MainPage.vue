@@ -1,6 +1,6 @@
 <template>
     <div class="main-page-wrapper">
-        <top_menu></top_menu>
+        <top-menu></top-menu>
         <full-page id="fullpage" :options="options">
             <div class="section title">
                 <div class="content">
@@ -8,20 +8,28 @@
                     <div class="image-box japanese"><img class="japanese" src="../assets/hentaibaka.png"></div>
                 </div>
                 <div @click="move_down" class="nav-block" id="down-wrapper">
-                    <Down id="down" class="nav_arrow"></Down>
+                    <arrow-down id="down" class="nav_arrow"></arrow-down>
                 </div>
             </div>
             <div class="section main-info">
                 <div id="slide1" class="slide">
-                    <!--<video data-autoplay  loop preload="auto">
-                        <source src="../assets/ricardo.mp4"/>
-                    </video>-->
-
+                    <div class="project-item">
+                        <div class="image-slider">
+                            <img class="image" src="https://i.imgur.com/2F2Rz3r.png"/>
+                        </div>
+                        <div class="description">
+                            <span class="description-title">Новостной портал</span>
+                            <div class="description-content">
+                                Данный проект написан при помощи фреймворка vue.js. Новостной портал позволяет пользователям
+                                писать статьи на свободные темы, добавлять картинки и прочие медиа файлы. Другие пользователи могут читать статьи, оценивать,
+                                комментировать их. Статьи выводятся в списке статей в хронологическом порядке, но также могут быть отсортированы и по другим критериям.
+                                Картинки обладают ленивой загрузкой, благодаря чему время на загрузку страницы минимально.
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="slide2" class="slide">
-                    <!--<video data-autoplay loop preload="auto">
-                        <source src="../assets/shrek.mp4"/>
-                    </video>-->
+
                 </div>
             </div>
         </full-page>
@@ -32,13 +40,12 @@
 </template>
 
 <script>
-    import top_menu from './top_menu'
-    import Down from '../components/icons/down'
-    import Up from '../components/icons/up'
+    import TopMenu from './TopMenu'
+    import ArrowDown from './icons/ArrowDown'
 
     export default {
-        name: "main_page",
-        components: {top_menu, Down, Up},
+        name: "MainPage",
+        components: {TopMenu, ArrowDown},
         data() {
             return {
                 options: {
@@ -51,6 +58,7 @@
         },
         methods: {
             move_down: function () {
+                /* eslint-disable */
                 fullpage_api.moveSectionDown();
             }
         }
@@ -58,24 +66,33 @@
 </script>
 
 <style lang="sass">
-    @import url('https://fonts.googleapis.com/css?family=Aguafina+Script&display=swap')
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap')
     @import "../normalize.css"
 
     $main_color: #F06292
     $complementary_color: #62f0c1
     $additional_complementary_color: #d8f062
 
-    =nav_button_size
-        min-width: 40px
-        min-height: 40px
-        width: 5vw !important
-        max-width: 80px
-        max-height: 80px !important
 
-    =unhilight
+    body
+        font-family: 'Open Sans', sans-serif
+    *
+        box-sizing: border-box
+
+    =nav_button_size
+        min-width: 50px
+        min-height: 50px
+        width: 5vw !important
+        max-width: 60px
+        max-height: 60px !important
+
+    =deselect
         -webkit-user-select: none
         -moz-user-select: none
         -ms-user-select: none
+        user-drag: none
+        user-select: none
+        -webkit-user-drag: none
 
     =flex-row
         display: flex
@@ -120,38 +137,45 @@
         height: 100%
         width: 100%
         display: block
+
     #down-wrapper
         border-radius: 100%
         transition: all .3s ease
         @media (pointer: fine)
             &:hover
                 //transform: translateY(10px)
-                bottom: -10px //Чтобы не было лага анимации
+                bottom: -10px
+    //Чтобы не было лага анимации
     .fp-controlArrow
         +nav_button_size
         border: none
         display: block
         height: auto
         transition: all .3s ease
+
         &:after
             content: ""
             display: block
             padding-bottom: 100%
+
         &.fp-next
             background: url("../assets/arrow_right.svg") no-repeat
             right: 0
             @media (pointer: fine)
                 &:hover
                     +transform-side-arrow(10px)
+
         &.fp-prev
             background: url("../assets/arrow_left.svg") no-repeat
             left: 0
             @media (pointer: fine)
                 &:hover
                     +transform-side-arrow(-10px)
+
     .main-page-wrapper
         height: 100vh
         width: 100%
+
     .nav-block
         +nav_button_size
         position: absolute
@@ -161,21 +185,53 @@
         right: 0
         bottom: 0
         animation: 1s ease-out 0s 1 move_down_animation
+
         .nav_arrow
             z-index: 30
+
             polygon
                 fill: white
+
     .slide
+        .project-item
+            background: white
+            padding: 100px  50px
+            display: flex
+            flex-direction: row
+            box-shadow: 0 0 10px #afafaf
+            .description
+                padding: 0 40px
+                display: flex
+                flex-direction: column
+                max-width: 600px
+                .description-title
+                    align-self: center
+                    font-size: 30px
+                    margin-bottom: 20px
+                .description-content
+                    line-height: 1.8
+                    font-size: 18px
+
+            .image-slider
+                position: relative
+                display: block
+                max-width: 600px
+                .image
+                    width: 100%
         &#slide1
             background: $complementary_color
+
         &#slide2
-             background: $additional_complementary_color
+            background: $additional_complementary_color
+
         .fp-tableCell
             +flex-row
             position: relative
+
     .section
         &.title
             background: $main_color
+
             .content
                 width: 100%
                 height: 100%
@@ -184,23 +240,29 @@
                 justify-content: center
                 align-items: center
                 position: relative
-                +unhilight
+                +deselect
+
                 .image-box
                     position: relative
+
                     &.logo
                         width: 60vw
                         max-width: 700px
                         min-width: 300px
+
                     &.japanese
                         width: 40vw
                         max-width: 500px
                         min-width: 220px
+
                 img
                     clear: both
                     position: relative
                     width: 100%
+
                 .main-logo
                     animation: .5s ease-out 0s 1 logo_animation
+
                 .japanese
                     animation: 1s ease-out 0s 1 japanese_animation
 

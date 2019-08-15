@@ -8,7 +8,7 @@
 
 <script>
 
-    import main_page from './components/main_page'
+    import main_page from './components/MainPage'
     //import loading_page from './components/loading_page'
 
     export default {
